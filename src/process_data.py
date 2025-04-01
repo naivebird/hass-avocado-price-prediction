@@ -93,7 +93,7 @@ def load_holidays_data():
     holiday_df["year_week"] = holiday_df["A_DATE"].apply(
         lambda x: x[-4:] + '-' + str(datetime.strptime(x, "%m/%d/%Y").isocalendar()[1]))
 
-    holiday_df["IS_HOLIDAY"].fillna(0, inplace=True)
+    holiday_df.fillna({"IS_HOLIDAY": 0}, inplace=True)
     holiday_df.rename(columns={"IS_HOLIDAY": "is_holiday"}, inplace=True)
     holiday_df = holiday_df[holiday_df["is_holiday"] == 1]
 
@@ -104,7 +104,7 @@ def merge_datasets():
     merged_df = load_price_data()
     for dataset in [load_production_volume_data(), load_wei_data(), load_gas_price_data(), load_holidays_data()]:
         merged_df = pd.merge(merged_df, dataset, on="year_week", how="left")
-    merged_df["is_holiday"].fillna(0, inplace=True)
+    merged_df.fillna({"is_holiday": 0}, inplace=True)
     return merged_df
 
 

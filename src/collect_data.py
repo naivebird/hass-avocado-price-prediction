@@ -1,3 +1,5 @@
+from io import BytesIO
+
 import kagglehub
 import pandas as pd
 import requests
@@ -22,7 +24,7 @@ def download_wei_data(url, output_path):
 
 def download_gasoline_price_data(url, output_path):
     response = requests.get(url)
-    df = pd.read_excel(response.content, sheet_name="Data 1", skiprows=2)
+    df = pd.read_excel(BytesIO(response.content), sheet_name="Data 1", skiprows=2)
     df.rename(
         columns={
             "Weekly U.S. Regular Conventional Retail Gasoline Prices  (Dollars per Gallon)": "gasoline_price"

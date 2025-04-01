@@ -1,6 +1,6 @@
-from src.collect_data import download_data
-from src.process_data import preprocess_data
-from src.train_models import train_models
+from collect_data import download_data
+from process_data import preprocess_data
+from train_models import train_models
 
 
 def main():
