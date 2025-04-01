@@ -1,5 +1,6 @@
 import pickle
-from os.path import join, dirname
+from os import makedirs
+from os.path import join, dirname, exists
 
 import numpy as np
 import pandas as pd
@@ -82,6 +83,9 @@ def train_models(df):
         results['R^2'].append(r2)
 
         print(f"{name} - MAE: {mae:.2f}, RMSE: {rmse:.2f}, R^2: {r2:.2f}")
+
+        if not exists(join(dirname(__file__), "models")):
+            makedirs(join(dirname(__file__), "models"))
 
         with open("models/{}.pkl".format(name.replace(" ", "_").lower()), "wb") as f:
             pickle.dump(model, f)
