@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "hass-avocado-price-prediction"
+version = "0.1.0"
+description = ""
+authors = ["Duc Ho <hoduc1202@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+kagglehub = "^0.3.10"
+pandas = "^2.2.3"
+seaborn = "^0.13.2"
+scikit-learn = "^1.6.1"
+xgboost = "^3.0.0"
+xlrd = "^2.0.1"
+notebook = "^7.3.3"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
