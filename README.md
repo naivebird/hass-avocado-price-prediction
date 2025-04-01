@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/38deaf34-3f3f-4f1a-b1d9-9535e18b554d)# Overview
+# Overview
 This project aims to predict next week's Hass avocado prices across multiple regions in the US.
 
 # Dataset
