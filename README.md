@@ -82,7 +82,7 @@ Install the dependencies
 poetry install
 ```
 ### Run the notebook
-This notebook is important as it has all my observations and explanations on feature engineering and model selection decisions.
+This notebook is important as it has all my observations and explanations for feature engineering and model selection decisions.
 ```bash
 jupyter notebook src/hass_avocado_price_prediction.ipynb
 ```
