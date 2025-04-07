@@ -87,7 +87,7 @@ This notebook is important as it has all my observations and explanations on fea
 jupyter notebook src/hass_avocado_price_prediction.ipynb
 ```
 ### Run the Python script
-This is just an alternative way to run the project at your terminal.
+This is an alternative way to run the project at your terminal.
 ```bash
 python src/main.py
 ```
