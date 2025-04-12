@@ -9,11 +9,11 @@ GAS_URL = "https://www.eia.gov/petroleum/gasdiesel/xls/pswrgvwall.xls"
 HOLIDAY_DATASET_NAME = "jeremygerdes/us-federal-pay-and-leave-holidays-2004-to-2100-csv"
 HOLIDAY_DATASET_PATH = "400_Years_of_Generated_Dates_and_Holidays.csv"
 
-WEI_PATH = "avocado-data/WEI.csv"
-GASOLINE_PRICE_PATH = "avocado-data/gasoline_price.csv"
-US_HOLIDAYS_PATH = "avocado-data/us_holidays.csv"
-AVOCADO_PRICE_PATH = "avocado-data/{year}-plu-total-hab-data.csv"
-AVOCADO_PRODUCTION_VOLUME_PATH = "avocado-data/Volume Data  Projections - Hass Avocado Board {year}.csv"
+WEI_PATH = "avocado-data/raw_data/WEI.csv"
+GASOLINE_PRICE_PATH = "avocado-data/raw_data/gasoline_price.csv"
+US_HOLIDAYS_PATH = "avocado-data/raw_data/us_holidays.csv"
+AVOCADO_PRICE_PATH = "avocado-data/raw_data/{year}-plu-total-hab-data.csv"
+AVOCADO_PRODUCTION_VOLUME_PATH = "avocado-data/raw_data/Volume Data  Projections - Hass Avocado Board {year}.csv"
 
 
 def download_wei_data(url, output_path):
