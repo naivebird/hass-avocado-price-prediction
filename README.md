@@ -1,60 +1,93 @@
 # Overview
-This project aims to predict next week's Hass avocado prices across multiple regions in the US.
+This project aims to predict next week's Hass avocado prices across multiple regions in the US using historical price data, production volume data, and other economic indicators. In this project, you can run this notebook: `src/hass_avocado_price_prediction.ipynb` to see my exploratory data analysis, feature engineering, and model training processes. There are also some other Python files including the `src/main.py` file which you can run to quickly achieve the same things (without data visualization) at your terminal as an alternative.
 
 # Dataset
-In this project, I combined multiple datasets to build price prediction models:
-* Avocado price data: [Hass Avocado Board](https://hassavocadoboard.com/category-data/?region=Total%20U.S.&y=2022)
-* Avocado production volume data: [Hass Avocado Board](https://hassavocadoboard.com/volume-data-projections/)
-* Weekly Economic Index: [FRED Economic Data](https://fred.stlouisfed.org/series/WEI)
-* Gasoline price: [US Energy Information Administration](https://www.eia.gov/petroleum/gasdiesel/)
-* US public holidays: [Kaggle](https://www.kaggle.com/datasets/jeremygerdes/us-federal-pay-and-leave-holidays-2004-to-2100-csv)
+In this project, I combined multiple datasets to build price-prediction models. All datasets are stored in the `src/avocado-data` directory.
 
-# Exploratory Data Analysis
+### Avocado price data 
+Link: [Hass Avocado Board](https://hassavocadoboard.com/category-data/?region=Total%20U.S.&y=2022) (login required).
 
-### Average selling price distribution
+Columns:
+* `ASP Current Year`: average selling price
+* `Geography`: the city or region of the observation
+* `Current Year Week Ending`: the date of the observation
+* `Type`: the type of avocado, conventional or organic
+* `Total Bulk and Bags Units`: total number of avocados sold
+* `4046 Units`: total number of avocados with PLU 4046 sold
+* `4225 Units`: total number of avocados with PLU 4225 sold
+* `4770 Units`: total number of avocados with PLU 4770 sold
+* `TotalBagged Units`: total number of bags sold
 
-![image](https://github.com/user-attachments/assets/eada70ae-fb15-4059-8d4c-8dd56554a594)
+### Avocado production volume data
+Link: [Hass Avocado Board](https://hassavocadoboard.com/volume-data-projections/) (login required).
 
-### Observations
-* Price looks normally distributed
-* Organic avocados tend to be more expensive than conventional avocados
+Columns:
+* `Year`: the year of the observation
+* `Week Number`: the week number of the observation
+* `Status`: the status of the record, Actual or Projected
+* `Total Volume`: total avocado production volume in California and other South American countries combined
+* `California`: California production volume
+* `Chile`: Chile's production volume
+* `Mexico`: Mexico's production volume
+* `Peru`: Peru's production volume
+* `Colombia`: Colombia's production volume
+* `Dominican Republic`: Dominican Republic's production volume
 
-### Production volumes and economic indicator distributions
-![image](https://github.com/user-attachments/assets/0e46cbdd-b6ca-4e7b-9417-19ce6178baff)
-![image](https://github.com/user-attachments/assets/b11fe119-1120-4946-99b2-17620bb3c696)
-![image](https://github.com/user-attachments/assets/29a13cdf-c83c-40e4-b3d5-46b58d2d9a85)
-![image](https://github.com/user-attachments/assets/fde797be-8053-488b-b72d-25de807cce99)
-![image](https://github.com/user-attachments/assets/a20d79ce-36a2-4f27-8c21-9e65e68c2b7f)
+### Weekly Economic Index
+Link: [FRED Economic Data](https://fred.stlouisfed.org/series/WEI)
 
-### Observations
-* Except for total production volume and Mexico's production volume, the other volume distributions are right-skewed, as most regions can only grow avocados during specific times of the year.
-* Mexico can produce avocados all year round.
-* Outliers are present in most of the variables
+Columns:
+* `WEI`: the value of the index
+* `observation_date`: the date of the observation
 
-### Avocado price trend vs sales volume trend
-![image](https://github.com/user-attachments/assets/073ea929-6d4f-4d29-9e3b-9f71ed07de89)
+### Gasoline price
+Link: [US Energy Information Administration](https://www.eia.gov/petroleum/gasdiesel/)
 
-### Observations
-* Avocado prices have fluctuated over the years, making it challenging for price prediction models to identify a clear pattern.
-* Spikes in sales volume often correspond with dips in price.
-
-### Avocado price trend vs total production volume trend
-![image](https://github.com/user-attachments/assets/3e32f3ec-cd39-4c4b-9612-77b1a498f781)
-
-### Observations
-* Total production volume also negatively correlates with the price,  production volume going up often makes the price go down.
-
-
-### Correlation matrix between numerical variables
-
-![image](https://github.com/user-attachments/assets/9373b3e1-e4eb-4656-97d6-cf6430eec225)
-
-### Observations
-* Sales volume columns are highly correlated with one another, we should only keep one of them to avoid multicollinearity.
-* The weekly economic indicator and gas price variables show a positive correlation with the price, though the strength of the relationship is moderate(0.26 and 0.27 respectively).
-* Mexico's production volume negatively correlates with the average price, primarily because 90% of U.S. avocado imports come from Mexico.
-* California production volume positively correlates with the average price, possibly because avocados from this region are more expensive.
-* Chile and the Dominican Republic's production volume show almost no correlation with the price, they should be removed.
-* Total production volume and Mexico's production volume exhibit a moderate positive correlation, indicating redundancy.
+Columns:
+* `Date`: the date of the observation
+* `gasoline_price`: the price of gasoline
 
 
+### US public holidays
+Link: [Kaggle](https://www.kaggle.com/datasets/jeremygerdes/us-federal-pay-and-leave-holidays-2004-to-2100-csv)
+
+Columns:
+* `A_DATE`: the date of the observation
+* `IS_HOLIDAY`: a flag to indicate if the date is a holiday
+
+# Reproduction Steps
+
+### Install required packages
+Clone the repository:
+```bash
+git clone https://github.com/naivebird/hass-avocado-price-prediction.git
+```
+
+Navigate to the project directory:
+```bash
+cd hass-avocado-price-prediction
+```
+
+Setup your virtual environment
+```bash
+python -m venv env
+env\Scripts\activate
+```
+Install poetry
+```bash
+pip install poetry
+```
+Install the dependencies
+```bash
+poetry install
+```
+### Run the notebook
+This notebook is important as it has all my observations and explanations for feature engineering and model selection decisions.
+```bash
+jupyter notebook src/hass_avocado_price_prediction.ipynb
+```
+### Run the Python script
+This is an alternative way to run the project at your terminal.
+```bash
+python src/main.py
+```
