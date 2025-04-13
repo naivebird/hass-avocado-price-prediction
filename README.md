@@ -2,7 +2,7 @@
 This project aims to predict next week's Hass avocado prices across multiple regions in the US using historical price data, production volume data, and other economic indicators. In this project, you can run this notebook: `src/hass_avocado_price_prediction.ipynb` to see my exploratory data analysis, feature engineering, and model training processes. There are also some other Python files including the `src/main.py` file which you can run to quickly achieve the same things (without data visualization) at your terminal as an alternative.
 
 # Dataset
-In this project, I combined multiple datasets to build price-prediction models. All datasets are stored in the `src/avocado-data` directory.
+In this project, I combined multiple datasets to build price-prediction models. All raw datasets are stored in the `src/avocado-data/raw_data` directory. You can also find the combined dataset in `src/avocado-data/combined_data`, and train and test data in `src/avocado-data/train_and_test_data`.
 
 ### Avocado price data 
 Link: [Hass Avocado Board](https://hassavocadoboard.com/category-data/?region=Total%20U.S.&y=2022) (login required).
